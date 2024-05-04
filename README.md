@@ -102,11 +102,11 @@ Once the backend server and frontend development server are running, you can acc
 - If you encounter a `ModuleNotFoundError` for any Python or Node.js module, use the respective package managers (pip for Python, npm for Node.js) to install the missing modules.
 
 
-## Data Initialization
+## Data Initialization - Adding Data to the Project
 
-# Adding Data to the Project
+During the initial setup of the project, you may want to add some sample data (museum information data and sample reviews). You can use the following `curl` command to add data to the project:
 
-During the initial setup of the project, you may want to add some sample data of Museum information. You can use the following `curl` command to add data to the project:
+# Adding Museum Information Data
 
 ```bash
 curl -X POST http://127.0.0.1:5000/museums/batch -H "Content-Type: application/json" -d '[
@@ -151,5 +151,16 @@ curl -X POST http://127.0.0.1:5000/museums/batch -H "Content-Type: application/j
     "PhoneNum": "+1 312-443-3600"
   }
 ]'
+```
+
+# Adding Sample Reviews
+
+```bash
+curl -X POST http://127.0.0.1:5000/reviews/batch -H "Content-Type: application/json" -d '[
+  {"museum_id": "661e2261f4cb08d0f95106bc", "review_data": {"comment": "Great museum!", "rating": 5}},
+  {"museum_id": "661e2261f4cb08d0f95106c4", "review_data": {"comment": "A must-visit place.", "rating": 4}},  {"museum_id": "661e2261f4cb08d0f95106bc", "review_data": {"comment": "Loved the interactive exhibits!", "rating": 5}},
+  {"museum_id": "661e2261f4cb08d0f95106c4", "review_data": {"comment": "A fantastic window into the past", "rating": 4}}
+]'
+```
 
 
