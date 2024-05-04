@@ -1,0 +1,90 @@
+
+<body>
+    <div class="title-container">
+        <div class="platform-name">
+            <h1>MuseoReview</h1>
+        </div>
+        <div class="search-container">  
+            <span class="add-container">
+                <div></div> 
+                <button class="back-button" (click)="navigateToPage('/Search')">&#8592; Back</button>    
+                <h2>{{museum.MuseumName}}</h2>
+                <div></div>
+            </span>
+        </div>
+    </div>
+    <div class="black-line"></div>
+
+    <div class="all-container">
+        <div class="details-container">
+            <div class="museum-info">
+                <h2>Museum Information</h2>
+                <div>
+                    <h3><u><b>Location</b></u></h3>
+                    <p>{{ museum.Location }}</p>
+                </div>
+                <div>
+                    <h3><u><b>Phone Number</b></u></h3>
+                    <p>{{ museum.PhoneNum }}</p>
+                </div>
+                <div>
+                    <h3><u><b>Fee</b></u></h3>
+                    <p>{{ museum.Fee }}</p>
+                </div>
+                <div>
+                    <h3><u><b>Length of Visit</b></u></h3>
+                    <p>{{ museum.LengthOfVisit }}</p>
+                </div>
+                <div>
+                    <h3><u><b>Description</b></u></h3>
+                    <p>{{ museum.Description }}</p>
+                </div>
+
+                <div class="museum-reviews">
+                    <h2>Reviews</h2>
+                    <ul>
+                        <li *ngFor="let review of reviews">
+                            <p><strong>Comment:</strong>{{ review.comment }}</p>
+                            <p><strong>Rating:</strong> {{ review.rating }}/5</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="reviews-container">
+            <div class="my-reviews">
+                <div class="addreview-container">  
+                    <h2>Add Your Reviews</h2>
+                    <form #reviewForm="ngForm" (ngSubmit)="addReview(reviewForm.value)">
+                        <p><strong>Comment:</strong></p>
+                        <textarea type="text" class="addreview-box" name="comment" [(ngModel)]="reviewAdd.comment" #comment="ngModel" placeholder="Write your comment here..." required></textarea>
+                        <div class="add-rating">
+                            <p><strong>Rating:</strong></p>
+                            <input type="number" class="rating-box" name="rating" [(ngModel)]="reviewAdd.rating" #rating="ngModel" min="1" max="5" placeholder="Rate 1-5" required>
+                        </div>
+                        <button class="addreview-button" type="submit" [disabled]="!reviewForm.valid" [class.disabled-button]="!reviewForm.valid">Submit</button>
+                    </form>
+                </div>
+                <div class="my-museum-reviews">
+                    <h2>Your Previous Reviews</h2>
+                    <ul>
+                        <li class="comments" *ngFor="let review of reviews">
+                            <p><strong>Comment:</strong>{{ review.comment }}</p>
+                            <p><strong>Rating:</strong> {{ review.rating }}</p>
+                            <button class="delete-button" (click)="toggleDialog(review, true)">Delete</button>
+                            <div *ngIf="review.showDialog" class="custom-dialog">
+                                <p>Are you sure you want to delete this comment?</p>
+                                <button class="confirm-button" (click)="deleteComment(review._id)">Confirm</button>
+                                <button class="confirm-button" (click)="toggleDialog(review, false)">Cancel</button>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+            <div></div>
+
+        </div>
+    </div>
+</body>

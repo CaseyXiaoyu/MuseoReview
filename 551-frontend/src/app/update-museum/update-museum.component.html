@@ -1,0 +1,48 @@
+<body>
+    <div class="title-container">
+        <div class="platform-name">
+            <h1>MuseoReview</h1>
+        </div>
+        <div class="search-container">  
+            <span class="add-container">
+                <div></div> 
+                <button class="back-button" (click)="navigateToPage('/Manage')">&#8592; Back</button>    
+                <h2>Update Museum Info</h2>
+                <div></div>
+            </span>
+        </div>
+
+    </div>
+    <div class="black-line"></div>
+    <div class="form-container">
+        
+        <form (ngSubmit)="updateMuseum(museumUpdated, form)" #form="ngForm">
+            <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" [(ngModel)]="museumUpdated.MuseumName" name="name" required>
+            </div>
+            <div class="form-group">
+            <label for="location">Location:</label>
+            <input type="text" id="location" [(ngModel)]="museumUpdated.Location" name="location" required>
+            </div>
+            <div class="form-group">
+            <label for="phonenum">Phone Number:</label>
+            <input type="text" id="phonenum" [(ngModel)]="museumUpdated.PhoneNum" name="phonenum" required>
+            </div>
+            <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" [(ngModel)]="museumUpdated.Description" name="description" required></textarea>
+            </div>
+            <div class="form-group">
+            <label for="fee">Fee:</label>
+            <input type="text" id="fee" [(ngModel)]="museumUpdated.Fee" name="fee" required>
+            </div>
+            <div class="form-group">
+            <label for="lengthofvisit">Length of Visit:</label>
+            <input type="text" id="lengthofvisit" [(ngModel)]="museumUpdated.LengthOfVisit" name="lengthofvisit" required>
+            </div>
+            <div class="form-group">
+            <button class="submit-button" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>

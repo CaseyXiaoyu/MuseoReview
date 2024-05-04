@@ -1,0 +1,69 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+</head>
+
+<body>
+<!-- search.component.html -->
+<div class="title-container">
+    <div class="platform-name">
+        <h1>MuseoReview</h1>
+    </div>
+    <div class="search-container">  
+        <button class="back-button" (click)="navigateToPage('')">&#8592; Back</button>
+        <input type="text" class="search-box" [(ngModel)]="searchTerm" placeholder="Search museum name" required>
+        <button class="search-button" (click)="onSearch(searchTerm)">Search</button>
+    </div>
+    <!-- <div class="black-line"></div> -->
+</div>
+<div class="black-line"></div>
+
+<div class="museumInfo-container">
+    <div *ngIf="!displayInfo">
+        <div class="museum-display">
+            <!-- Custom Alert Box -->
+            <div id="customAlert" style="display:none;">
+                <p>No results found.</p>
+                <button id="close-button" (click)="closeCustomAlert()">Close</button>
+            </div>
+
+            <div class="museum-card" *ngFor="let museum of museums">
+                <div class="museum-basic-info">
+                    <h2>{{ museum.MuseumName }}</h2>
+                    <div class="info-two-cols"><span class="fas fa-home" style="color:#572300;" ></span> Location: <span> {{ museum.Location }} </span></div> 
+                    <p class="info-two-cols"><i class="fas fa-phone" style="color:#572300;"></i> Phone number: {{ museum.PhoneNum }}</p> 
+                    <p class="info-two-cols"><i class="fas fa-book" style="color: #572300;"></i> Description: {{ museum.Description }}</p>
+                    <p class="info-two-cols"><i class="fas fa-coins" style="color: #572300;"></i> Fee: {{ museum.Fee }}</p>
+                    <p class="info-two-cols"><i class="fas fa-clock" style="color: #572300;"></i> Suggested visit time: {{ museum.LengthOfVisit }}</p>
+                    <p class="info-two-cols"><i class="fas fa-star" style="color: #572300;"></i> Average rating: {{ museum.AverageRating }}</p>
+                    <p class="info-two-cols"><i class="fas fa-comments" style="color: #572300;"></i> Total number of reviews: {{ museum.ReviewCount }}</p>
+
+
+                    <div class="viewReview-button-container">
+                        <button class="view-review-button" (click)="navigateToReviewsPage('/Search/Reviews', museum.id)">View Reviews</button>
+                    </div>
+                    <!-- <p class="info-two-cols"><i class="fas fa-comment-dots" style="color: #572300;"></i> {{ museum.totalreviews }} reviews</p> -->
+                    <!-- <p class="info-two-cols"><i class="fas fa-star" style="color: #572300;"></i> {{ museum.rating }}/5</p> -->
+                </div>
+
+        
+                <!-- <div class="museum-reviews" *ngIf="museum.reviews && museum.reviews.length">
+                    <h3>Reviews</h3>
+                    <ul>
+                    <li *ngFor="let review of museum.reviews">
+                        <strong>{{ review.author }}</strong>: {{ review.rating }}/5
+                        <p>{{ review.content }}</p>
+                    </li>
+                    </ul>
+                    <div class="addreview-container"> 
+                        <input type="text" class="addreview-box" placeholder="Write your review here..." required>
+                        <button class="addreview-button" (click)="addReview()">Submit</button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+</body>  
+ 
